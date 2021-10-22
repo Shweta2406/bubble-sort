@@ -1,0 +1,63 @@
+#include <stdio.h>
+struct student
+{
+char name[50];
+int roll;
+float marks;
+} s[100];
+void bubbleSortDesc(struct student stud_list[], int s);
+int main()
+{
+int i,n,k,rn;
+struct student s[100];
+printf("Enter total of students:\n");
+scanf("%d",&n);
+for(i=0;i<n;i++)
+{
+printf("\nEnter information of student %d:\n",i+1);
+printf("Enter name: ");
+scanf("%s", s[i].name);
+printf("Enter roll number: ");
+scanf("%d", &s[i].roll);
+printf("Enter marks: ");
+scanf("%f", &s[i].marks);
+}
+bubbleSortDesc(s, n);
+printf("\nDisplaying Information:\n");
+printf("Name \tRoll_Number \tMarks\n");
+for(i=0;i<n;i++)
+{
+printf("%s \t\t%d \t\t\t%.1f \n",s[i].name,s[i].roll,s[i].marks);
+}
+printf("\nEnter Roll Number To Search Student Record:\n");
+scanf("%d",&rn);
+for(i=0;i<n;i++)
+{
+if(s[i].roll==rn)
+{
+k=i;
+printf("\nRecord Found At Roll Number (%d)\n",rn);
+printf("\n\tName: %s\n ",s[k].name);
+printf("\tRoll number: %d\n",s[k].roll);
+printf("\tMarks: %.1f\n\n",s[k].marks);
+}
+}
+return 0;
+}
+void bubbleSortDesc(struct student stud_list[100], int s)
+{
+int i, j;
+struct student temp;
+for (i=0;i<s-1;i++)
+{
+  for (j=0;j<(s-1-i);j++)
+{
+if (stud_list[j].marks < stud_list[j+1].marks)
+{
+temp = stud_list[j];
+stud_list[j] = stud_list[j+1];
+stud_list[j+1] = temp;
+}
+}
+}
+}
